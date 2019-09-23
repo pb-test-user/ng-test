@@ -2,11 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostsComponent } from './posts.component';
 import { Routes, RouterModule } from '@angular/router';
+import { PostsResolver } from './posts.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
     path: '',
-    component: PostsComponent
+    component: PostsComponent,
+    resolve: {
+      posts: PostsResolver
+    }
   }
 ];
 
@@ -14,8 +19,10 @@ const routes: Routes = [
   declarations: [PostsComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    HttpClientModule
   ],
-  exports: [PostsComponent]
+  exports: [PostsComponent],
+  providers: [PostsResolver]
 })
 export class PostsModule { }

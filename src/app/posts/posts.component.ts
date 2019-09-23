@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute } from '@angular/router';
+import { RedditTopPosts } from './posts';
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsComponent implements OnInit {
 
-  constructor() { }
+  posts: RedditTopPosts;
+
+  constructor(private route: ActivatedRoute) {
+    this.posts = this.route.snapshot.data.posts;
+  }
 
   ngOnInit() {
   }

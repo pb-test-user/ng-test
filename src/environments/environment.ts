@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  reddit: {
+    apiRoot: 'https://www.reddit.com/top.json',
+    queryParams: ['after', 'before', 'limit', 'count', 'show']
+  }
 };
 
 /*
