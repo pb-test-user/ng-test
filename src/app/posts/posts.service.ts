@@ -26,10 +26,10 @@ export class PostsResolver implements Resolve<Observable<RedditTopPosts>> {
   }
 
   getParams(route: ActivatedRouteSnapshot): HttpParams {
-    const params = new HttpParams();
+    let params = new HttpParams();
     const filterQueryParams = environment.reddit.queryParams;
     filterQueryParams.forEach(name => {
-      params.set(name, route.paramMap.get(name));
+      params = params.append(name, route.queryParamMap.get(name));
     });
     return params;
   }
