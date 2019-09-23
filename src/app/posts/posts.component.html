@@ -1,1 +1,12 @@
-<div>{{posts|json}}</div>
+<mat-sidenav-container>
+    <mat-sidenav opened [mode]="sidenavMode" #sidenav>
+      <a mat-list-item *ngIf="sidenavMode == 'push'" (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+        LIST
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div style="height: 88vh;">
+      <span *ngIf="sidenavMode == 'push'" (click)="sidenav.open()">Open</span>
+        DETAILS
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

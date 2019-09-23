@@ -4,6 +4,7 @@ import { PostsComponent } from './posts.component';
 import { Routes, RouterModule } from '@angular/router';
 import { PostsResolver } from './posts.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    HttpClientModule
+    HttpClientModule,
+    MatSidenavModule
   ],
   exports: [PostsComponent],
   providers: [PostsResolver]
