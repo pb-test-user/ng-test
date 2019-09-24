@@ -5,6 +5,10 @@
     padding-bottom: 25px; 
     border-bottom: 1px solid gray;
     color: rgb(48, 53, 6);
+    cursor: pointer;
+}
+.item.read {
+    color: #8f9a7b;
 }
 
 .item.fields {
@@ -18,6 +22,7 @@
 .image {
    display: flex;
    align-items: start;
+   margin: 5px 5px;
 }
 
 img { 
@@ -31,4 +36,5 @@ img {
 .fields > * {
 	flex: auto;
     width: 50%;
+    margin-right: 5px;
 }

@@ -1,5 +1,5 @@
 <section>
-    <h1>{{post.author}}</h1>
-    <img  *ngIf="post.thumbnail" [src]="post.thumbnail">
-    <p>{{post.title}}</p>
+    <h1>{{item.post.author}}</h1>
+    <img *ngIf="item.post.thumbnail" [src]="item.post.thumbnail">
+    <p>{{item.post.title}}</p>
 </section>

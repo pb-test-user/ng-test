@@ -1,3 +1,16 @@
+export interface RedditApiRequest {
+    after?: string;
+    before?: string;
+    limit: number;
+    count: number;
+    show: number;
+}
+
+export interface Item {
+    post: Post;
+    storage: { read: boolean, dism: boolean};
+}
+
 
 // interfaces generated with http://www.json2ts.com
 export interface MediaEmbed {
@@ -313,12 +326,4 @@ export interface Data {
 export interface RedditTopPosts {
     kind: string;
     data: Data;
-}
-
-export interface RedditApiRequest {
-    after?: string;
-    before?: string;
-    limit: number;
-    count: number;
-    show: number;
 }

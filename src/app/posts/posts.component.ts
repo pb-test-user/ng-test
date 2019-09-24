@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RedditTopPosts } from './posts';
+import { Item } from './posts';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { Post } from './posts';
+import { StorageService } from '../app.service';
 
 @Component({
   selector: 'app-posts',
@@ -12,20 +12,22 @@ import { Post } from './posts';
 export class PostsComponent implements OnInit, OnDestroy {
 
   @ViewChild('sidenav', { static: true }) sidenav;
-  posts: Post[];
+  items: Item[];
   mediaQuery: MediaQueryList;
   listenerRef: any;
   sidenavMode: 'push' | 'side' = 'side';
-  selected: Post;
+  selected: Item;
+  private Read = false;
 
   constructor(
+    private storage: StorageService,
     private route: ActivatedRoute,
     private mediaMatcher: MediaMatcher
   ) {
   }
 
   ngOnInit() {
-    this.posts = this.route.snapshot.data.posts;
+    this.items = this.route.snapshot.data.items;
     this.mediaQuery = this.mediaMatcher.matchMedia('(min-width: 640px)');
     this.listenerRef = ((postComponent) => {
       return (a: any) => {
@@ -45,11 +47,15 @@ export class PostsComponent implements OnInit, OnDestroy {
     this.mediaQuery.removeListener(this.listenerRef);
   }
 
-  onSelect(post: Post) {
-    this.selected = post;
+  onSelect(item: Item) {
+    item.storage.read = true;
+    this.storage.save(item.post.name, item.storage);
+    this.selected = item;
   }
 
-  onDismiss(post: Post) {
-    this.posts = this.posts.filter(p => p.name !== post.name);
+  onDismiss(item: Item) {
+    item.storage.dism = true;
+    this.storage.save(item.post.name, item.storage);
+    this.items = this.items.filter(p => p.post.name !== item.post.name);
   }
 }

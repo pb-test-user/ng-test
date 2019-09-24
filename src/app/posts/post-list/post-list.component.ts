@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Post } from '../posts';
+import { Item } from '../posts';
 import {
   trigger,
   state,
@@ -23,23 +23,22 @@ import {
   ]
 })
 export class PostListComponent implements OnInit {
-  @Output() doSelect = new EventEmitter<Post>();
-  @Output() dismiss = new EventEmitter<Post>();
-  @Input() posts: Array<Post>;
-
+  @Output() doSelect = new EventEmitter<Item>();
+  @Output() dismiss = new EventEmitter<Item>();
+  @Input() items: Array<Item>;
   constructor() { }
 
   ngOnInit() { }
 
-  dismissAction($evt: Event, post: Post) {
+  dismissAction($evt: Event, item: Item) {
     $evt.stopImmediatePropagation();
     $evt.stopPropagation();
-    this.dismiss.emit(post);
+    this.dismiss.emit(item);
   }
 
-  selectAction($evt: Event, post: Post) {
+  selectAction($evt: Event, item: Item) {
     $evt.stopImmediatePropagation();
     $evt.stopPropagation();
-    this.doSelect.emit(post);
+    this.doSelect.emit(item);
   }
 }
