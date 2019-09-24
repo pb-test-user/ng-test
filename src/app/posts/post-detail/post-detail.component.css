@@ -1,3 +1,9 @@
 section {
     padding: 1em;
+    height: 100vh;
+    width: 100vh;
+}
+img {
+    cursor: pointer;
+    object-fit: contain;
 }

@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { PostListComponent } from './post-list/post-list.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import { AppMaterialModule } from '../app-material.module';
 
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     HttpClientModule,
-    MatSidenavModule
+    MatSidenavModule,
+    AppMaterialModule
   ],
   exports: [PostsComponent],
   providers: [PostsResolver]

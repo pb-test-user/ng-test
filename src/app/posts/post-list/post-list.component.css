@@ -1,40 +1,29 @@
+div {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+div div {
+    flex-direction: row;
+}
+img,
+button,
+span {
+    flex-basis: 100%;
+    padding: 2px;
+}
 .item {
-    background-color: rgb(213, 231, 185);
-    margin-top: 5px;
-    padding: 5px;
-    padding-bottom: 25px; 
-    border-bottom: 1px solid gray;
-    color: rgb(48, 53, 6);
     cursor: pointer;
+    color: rgb(48, 53, 6);
+    background-color: rgb(213, 231, 185);
+    border-bottom: 1px solid gray;
 }
 .item.read {
     color: #8f9a7b;
 }
-
-.item.fields {
-    background-color: rgb(213, 231, 185);
-    margin-top: 5px;
-    padding: 5px;
-    padding-bottom: 25px; 
-    border-bottom: 1px solid gray;
-}
-
-.image {
-   display: flex;
-   align-items: start;
-   margin: 5px 5px;
-}
-
-img { 
-    margin: 3px;
-}
-
-.fields {
-	display: flex;
-	flex-direction: col;
-}
-.fields > * {
-	flex: auto;
-    width: 50%;
+img {
     margin-right: 5px;
+}
+.align-right {
+    text-align: right;
 }

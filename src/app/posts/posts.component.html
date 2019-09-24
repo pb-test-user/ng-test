@@ -1,12 +1,18 @@
-<mat-sidenav-container>
+<mat-sidenav-container (document:mousemove)="onMouseMove($event)">
   <mat-sidenav opened [mode]="sidenavMode" #sidenav>
-    <a mat-list-item *ngIf="sidenavMode == 'push'" (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
-    <app-post-list [items]="items" (doSelect)="onSelect($event)" (dismiss)="onDismiss($event)"></app-post-list>
+    <h3>Reddit posts</h3>
+    <app-post-list [items]="items" (doOpen)="openDialog($event)" (doSelect)="onSelect($event)" (dismiss)="onDismiss($event)"></app-post-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div style="height: 88vh;">
-      <span *ngIf="sidenavMode == 'push'" (click)="sidenav.open()">Open nav</span>
-      <app-post-detail *ngIf="selected !== undefined" [item]="selected"></app-post-detail>
-    </div>
+    <button *ngIf="sidenavMode == 'push'" (click)="sidenav.open()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <app-post-detail *ngIf="selected !== undefined" [item]="selected" (doOpen)="openDialog($event)"></app-post-detail>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<ng-template #dialog let-post="post">
+  <div class="dialog">
+    <img (click)="close()" [src]="post.url"/>
+  </div>
+</ng-template>

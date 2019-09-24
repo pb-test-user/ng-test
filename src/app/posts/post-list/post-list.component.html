@@ -1,16 +1,17 @@
-<div *ngFor="let item of items;" class="item" [ngClass]="{ 'read': item.storage.read}" @fadeout>
-    <div (click)="selectAction($event, item)">
-        <div class="fields">
+<ng-container *ngFor="let item of items;">
+    <div (click)="selectAction($event, item)" class="item" [ngClass]="{ 'read': item.storage.read}" @fadeout>
+        <div>
             <span>{{item.post.author}}</span>
-            <span>{{(item.post.created_utc * 1000)| timeAgo}}</span>
+            <span class="align-right">{{(item.post.created_utc * 1000)| timeAgo}}</span>
         </div>
-        <div class="image">
-            <img *ngIf="item.post.thumbnail" [src]="item.post.thumbnail" class="image"/>
+        <div>
+            <img *ngIf="item.post.thumbnail"
+            [src]="item.post.thumbnail"/>
             <span>{{item.post.title}}</span>
         </div>
-        <div class="fields">
+        <div>
             <button (click)="dismissAction($event, item)">Dismiss</button>
-            <span>{{item.post.num_comments}}<span *ngIf="item.post.num_comments"> comments</span></span>
+            <span class="align-right">{{item.post.num_comments}}<span *ngIf="item.post.num_comments"> comments</span></span>
         </div>
     </div>
-</div>
+</ng-container>

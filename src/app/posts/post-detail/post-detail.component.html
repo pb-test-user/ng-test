@@ -1,5 +1,5 @@
 <section>
     <h1>{{item.post.author}}</h1>
-    <img *ngIf="item.post.thumbnail" [src]="item.post.thumbnail">
+    <img *ngIf="item.post.thumbnail" [src]="item.post.thumbnail" (mousedown)="cancel($event)" (click)="openAction($event, item.post)">
     <p>{{item.post.title}}</p>
 </section>
