@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RedditTopPosts } from './posts';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { Post } from './posts';
 
 @Component({
   selector: 'app-posts',
@@ -11,10 +12,11 @@ import { MediaMatcher } from '@angular/cdk/layout';
 export class PostsComponent implements OnInit, OnDestroy {
 
   @ViewChild('sidenav', { static: true }) sidenav;
-  posts: RedditTopPosts;
+  posts: Post[];
   mediaQuery: MediaQueryList;
   listenerRef: any;
   sidenavMode: 'push' | 'side' = 'side';
+  selected: Post;
 
   constructor(
     private route: ActivatedRoute,
@@ -41,5 +43,13 @@ export class PostsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.mediaQuery.removeListener(this.listenerRef);
+  }
+
+  onSelect(post: Post) {
+    this.selected = post;
+  }
+
+  onDismiss(post: Post) {
+    this.posts = this.posts.filter(p => p.name !== post.name);
   }
 }

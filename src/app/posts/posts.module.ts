@@ -5,6 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { PostsResolver } from './posts.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { PostListComponent } from './post-list/post-list.component';
+import { PostDetailComponent } from './post-detail/post-detail.component';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 const routes: Routes = [
   {
@@ -17,7 +20,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [PostsComponent],
+  declarations: [PostsComponent, PostListComponent, PostDetailComponent, TimeAgoPipe],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

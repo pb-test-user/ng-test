@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ChildActivationStart } from '@angular/router';
+import { Resolve } from '@angular/router';
 import { Observable, EMPTY } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -21,12 +21,12 @@ export class PostsResolver implements Resolve<Observable<Post[]>> {
     if (Object.keys(params).length === 0) {
       return EMPTY;
     }
-    const posts: Observable<Post[]> = this.http.get<RedditTopPosts>(`${environment.reddit.apiRoot}`, {
+    const items: Observable<Post[]> = this.http.get<RedditTopPosts>(`${environment.reddit.apiRoot}`, {
       params
     }).pipe(
       map((data) => this.adapter(data))
     );
-    return posts;
+    return items;
   }
 
   getParams(route: ActivatedRouteSnapshot): HttpParams {
@@ -38,9 +38,9 @@ export class PostsResolver implements Resolve<Observable<Post[]>> {
     return params;
   }
 
-  adapter(response: RedditTopPosts): Post[] {
-    const data = response.data;
-    const dataChildren = data && data.children;
+  adapter(source: RedditTopPosts): Post[] {
+    const data = source.data;
+    const dataChildren = data && data.children || [];
     return dataChildren.map(child => child.data) || [];
   }
 }
