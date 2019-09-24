@@ -2,6 +2,7 @@
   <mat-sidenav opened [mode]="sidenavMode" #sidenav>
     <h3>Reddit posts</h3>
     <app-post-list [items]="items" (doOpen)="openDialog($event)" (doSelect)="onSelect($event)" (dismiss)="onDismiss($event)"></app-post-list>
+    <div class="bottom"><button (click)="onDismissAll()">Dismiss all</button></div>
   </mat-sidenav>
   <mat-sidenav-content>
     <button *ngIf="sidenavMode == 'push'" (click)="sidenav.open()">

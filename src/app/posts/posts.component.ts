@@ -94,6 +94,13 @@ export class PostsComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Dissmiss all posts
+   */
+  onDismissAll() {
+    this.items.forEach((i) => this.onDismiss(i));
+  }
+
+  /**
    * Open dialog event handler
    */
   openDialog(post: Post) {
