@@ -194,7 +194,7 @@ export interface Media {
     type: string;
 }
 
-export interface Data2 {
+export interface Post {
     approved_at_utc?: any;
     subreddit: string;
     selftext: string;
@@ -299,7 +299,7 @@ export interface Data2 {
 
 export interface Child {
     kind: string;
-    data: Data2;
+    data: Post;
 }
 
 export interface Data {
