@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
 import { RedditTopPosts, Post, Item } from './posts';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { StorageService } from '../app.service';
+import { StorageService } from '../services/app-store.service';
 
 @Injectable({
   providedIn: 'root'

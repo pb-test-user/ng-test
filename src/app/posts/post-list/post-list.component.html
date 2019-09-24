@@ -2,7 +2,7 @@
     <div (click)="selectAction($event, item)" class="item" [ngClass]="{ 'read': item.storage.read}" @fadeout>
         <div>
             <span>{{item.post.author}}</span>
-            <span class="align-right">{{(item.post.created_utc * 1000)| timeAgo}}</span>
+            <span class="align-right">{{(item.post.created_utc * 1000 + '')| timeAgo}}</span>
         </div>
         <div>
             <img *ngIf="item.post.thumbnail"

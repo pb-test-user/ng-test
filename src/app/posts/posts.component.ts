@@ -2,11 +2,12 @@ import { Component, OnInit, ViewChild, OnDestroy, ViewContainerRef, TemplateRef 
 import { ActivatedRoute } from '@angular/router';
 import { Item, Post} from './posts';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { StorageService } from '../app.service';
+import { StorageService } from '../services/app-store.service';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { filter, take } from 'rxjs/operators';
 import { Subscription, fromEvent } from 'rxjs';
 import { TemplatePortal } from '@angular/cdk/portal';
+import { GalleryService } from '../services/gallery.service';
 
 const SIDENAV_MODE_PUSH = 'push';
 const SIDENAV_MODE_SIDE = 'side';
@@ -27,13 +28,13 @@ export class PostsComponent implements OnInit, OnDestroy {
   private overlayRef: OverlayRef;
   private overlaySubs: Subscription;
 
-
   constructor(
     private storage: StorageService,
     private route: ActivatedRoute,
     private mediaMatcher: MediaMatcher,
     private overlay: Overlay,
-    private viewContainerRef: ViewContainerRef
+    private viewContainerRef: ViewContainerRef,
+    private gallery: GalleryService
   ) {
   }
 
@@ -57,25 +58,39 @@ export class PostsComponent implements OnInit, OnDestroy {
     this.mediaQuery.removeListener(this.listenerRef);
   }
 
+  /**
+   * Open the sidenav when the mouse position is near to window left edge
+   */
   onMouseMove(e: MouseEvent) {
     if (e.clientX < 20 && !this.sidenav.opened) {
       this.sidenav.open();
     }
   }
 
+  /**
+   * Select action handler. It shows the post details, save preferences to storage and picture to gallery.
+   */
   onSelect(item: Item) {
     item.storage.read = true;
     this.storage.save(item.post.name, item.storage);
     this.selected = item;
+    this.gallery.addImage(item.post.url);
     if (this.sidenavMode === SIDENAV_MODE_PUSH) {
       this.sidenav.close();
     }
   }
 
+  /**
+   * Dismiss action handler. It removes the item from screen.
+   */
   onDismiss(item: Item) {
     item.storage.dism = true;
+    // add item preference to storage
     this.storage.save(item.post.name, item.storage);
+    // removes the item from the screen
     this.items = this.items.filter(p => p.post.name !== item.post.name);
+    // removes from gallery
+    // this.gallery.removeImage(p.post.url);
   }
 
   /**

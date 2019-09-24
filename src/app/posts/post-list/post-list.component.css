@@ -22,6 +22,7 @@ span {
     color: #8f9a7b;
 }
 img {
+    object-fit: contain;
     margin-right: 5px;
 }
 .align-right {
